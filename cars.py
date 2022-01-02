@@ -1,11 +1,11 @@
 from datetime import date
 
-info_file = open('informacje_najem.csv', 'r')
-klienci = open('klienci.csv', 'r')
-koszty = open('koszty.csv', 'r')
-rezerwacje = open('rezerwacje.csv', 'r')
-samochody = open('samochody.csv', 'r')
-wypozyczenia = open('wypozyczenia.csv', 'r')
+info_file = open('data/informacje_najem.csv', 'r')
+klienci = open('data/klienci.csv', 'r')
+koszty = open('data/koszty.csv', 'r')
+rezerwacje = open('data/rezerwacje.csv', 'r')
+samochody = open('data/samochody.csv', 'r')
+wypozyczenia = open('data/wypozyczenia.csv', 'r')
 
 Infos = []
 Clients = []
@@ -120,4 +120,3 @@ for line in wypozyczenia:
     LoanData = line.split(',')
     newLoan = Wypozyczenie(LoanData[0], LoanData[1], LoanData[2][:-1:])
     Loans.append(newLoan)
-
