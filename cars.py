@@ -120,3 +120,26 @@ for line in wypozyczenia:
     LoanData = line.split(',')
     newLoan = Wypozyczenie(LoanData[0], LoanData[1], LoanData[2][:-1:])
     Loans.append(newLoan)
+
+# calculate costs
+for cost in Costs:
+    for loan in Loans:
+        if (loan.idWypozyczenia == cost.idWypozyczenia):
+            przejechanychKm = int(loan.iloscKm)
+            idRezerwacji = loan.idRezerwacji
+    for reservation in Reservations:
+        if (reservation.idRezerwacji == idRezerwacji):
+            liczbaDni = int(reservation.liczbaDni)
+            idSamochodu = reservation.idSamochodu
+    for info in Infos:
+        if (info.idSamochodu == idSamochodu):
+            limit = int(info.limitKm)
+            cena = int(info.cena)
+            kosztDodatkowy = float(info.kosztDodatkowy)
+    dodatkoweKm = przejechanychKm - liczbaDni*limit
+    if(dodatkoweKm > 0):
+        cost.dodatkoweKm = dodatkoweKm
+    else:
+        cost.dodatkoweKm = 0
+    cost.kosztNajmu = cena*liczbaDni + cost.dodatkoweKm*kosztDodatkowy
+    print(cost)
